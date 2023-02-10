@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 mydb = 'dojos_and_ninjas_schema'
-# route.py
+# dojo.py
 class Dojo:
     def __init__(self,data):
         self.id = data['id']

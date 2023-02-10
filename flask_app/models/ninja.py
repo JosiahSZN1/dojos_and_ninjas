@@ -30,10 +30,10 @@ class Ninja:
         return connectToMySQL(mydb).query_db(query,data)
     
     @classmethod
-    def get_one_dojo(cls,data):
+    def delete_ninja(cls,data):
         query = '''
-        SELECT *
-        FROM dojos
+        DELETE *
+        FROM ninjas
         WHERE id = %(id)s;
         '''
-        return connectToMySQL(mydb).query_db(query,data)[0]
+        connectToMySQL(mydb).query_db(query, data)

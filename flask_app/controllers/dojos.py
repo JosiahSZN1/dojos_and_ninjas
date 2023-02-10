@@ -34,3 +34,5 @@ def add_ninja():
     }
     ninja.Ninja.add_ninja(data)
     return redirect('/show_dojo/' + request.form['dojo'])
+
+@app.route('delete_ninja')
