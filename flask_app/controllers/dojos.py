@@ -35,4 +35,22 @@ def add_ninja():
     ninja.Ninja.add_ninja(data)
     return redirect('/show_dojo/' + request.form['dojo'])
 
-@app.route('delete_ninja')
+@app.route('/delete_ninja/<int:ninja_id>/<string:dojo_id>')
+def delete_ninja(ninja_id,dojo_id):
+    ninja.Ninja.delete_ninja({'id':ninja_id})
+    return redirect('/show_dojo/' + dojo_id)
+
+@app.route('/show_edit_ninja_page/<int:ninja_id>')
+def render_edit_ninja_page(ninja_id):
+    return render_template('edit.html', ninja_info = ninja.Ninja.get_one_ninja({'id': ninja_id}))
+    
+@app.route('/update_ninja/<int:ninja_id>/<string:dojo_id>', methods=['POST'])
+def update_ninja(ninja_id,dojo_id):
+    data = {
+        'id': ninja_id,
+        'first_name': request.form['first_name'],
+        'last_name': request.form['last_name'],
+        'age': request.form['age']
+    }
+    ninja.Ninja.update_ninja(data)
+    return redirect('/show_dojo/' + dojo_id)
